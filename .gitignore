@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+data/*
+!data/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+# Ignore local secrets, generated databases, models, and build caches.
+.env.*
+!.env.example
+frontend/.env.*
+!frontend/.env.example
+*.sqlite3
+*.db
+*.keras
+*.joblib
+*.h5
+*.tsbuildinfo
