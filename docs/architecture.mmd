@@ -1,0 +1,19 @@
+flowchart LR
+    User[Student] --> UI[React + TypeScript UI]
+    UI -->|multipart image| API[FastAPI]
+    API --> Validate[Validate size, format, dimensions, EXIF]
+    Validate --> Compare{Prediction request}
+    Compare -->|HOG + HSV| ML[LinearSVC model]
+    Compare -->|resize + normalize| CNN[CNN model]
+    ML --> API
+    CNN --> API
+    API --> DB[(SQLite prediction metadata)]
+    API -->|prediction + metrics JSON| UI
+    Dataset[PlantVillage local folders] --> Prep[Prepare, dedupe, split]
+    Prep --> Manifest[(Shared split manifest)]
+    Manifest --> MLTrain[Train ML]
+    Manifest --> CNNTrain[Train CNN]
+    MLTrain --> Artifacts[(Local artifacts + metrics)]
+    CNNTrain --> Artifacts
+    Artifacts --> ML
+    Artifacts --> CNN
